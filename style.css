@@ -1,0 +1,45 @@
+html,body,div,ul,li,svg{
+    margin:0;
+    padding:0;
+    list-style:none;
+}
+
+/*------------Global-------------*/
+html,body{
+    height: 100%;
+    position: relative;
+    background: rgb(242,244,233);
+}
+
+.container .section{
+    width:100%;
+}
+.container .canvas{
+    width:100%;
+    background:white;
+    height:700px;
+}
+.container .controls{
+    margin-bottom:20px;
+}
+
+/*------------font-------------*/
+body{
+    font-size: 16px;
+}
+h1{ font-size:2em;}
+h2{ font-size:1.3em;}
+p, svg text{
+    font-family:"Open Sans Condensed", sans-serif;
+}
+
+/*------------map-------------*/
+.state circle{
+    fill:rgba(180,180,180,.1);
+    stroke:rgb(80,80,80);
+    stroke-width:1px;
+}
+.state text{
+    fill:rgb(80,80,80);
+    font-size:10px;
+}
