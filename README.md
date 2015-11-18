@@ -31,3 +31,35 @@ var data = states.features.map(function(d){
 ```
 
 Knowing that we intend to draw the states as circles in a force layout with collision detection and custom gravity, we need to perform a few preparatory steps on the data itself.
+
+First, remember that `states.features` is a 52 element array of GeoJSON objects. This block of code:
+```
+var data = states.features.map(function(d){
+    ...
+    
+    return {
+        ...
+    }
+});
+```
+iterates through `states.features`, and for each element, *returns a new element* into a *new array* called `data`.
+
+Elements in this new `data` array has the following key attributes:
+- `x`,`y`: these screen coordinates will be modified by the force layout dynamically.
+- `x0`,`y0`: these are geographically accurate coordinates, which won't change. The circle nodes will gravitate towards these coordinates in the absence of other constraints.
+- `r`: circle node radius, important for collision detection calculations.
+
+## Construct a force layout
+Construct a force layout. This layout should have no `charge` or `gravity`. Remember, the only forces we want to act on these circles are our custom gravity and collision detection.
+
+## Fun with the `tick` event
+The `tick` event is at the heart of the the force layout's behavior. Remember, force layout handles the `tick` event as follows:
+```
+force.on('tick',function(e){
+    //"e" is the event object with an "alpha" property
+    ...
+}
+```
+where `e.alpha` keeps track of the force layout's stability. At the start of the force layout, `e.alpha` is 1. When `e.alpha` reaches near 0, the layout is stable, the the `tick` event stops.
+
+Based on our example in class, implement a the two sets of constraints: custom gravity and collision detection.
